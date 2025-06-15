@@ -1,6 +1,3 @@
-# Finalizing App.js to integrate emotional memory loading/saving using the previous EmotionMemory.js logic
-
-app_js_code = """
 import React, { useState, useEffect } from 'react';
 import { saveUserMemory, loadUserMemory } from './EmotionMemory';
 
@@ -30,14 +27,12 @@ function App() {
   const handleUserMessage = async () => {
     addToChat(message, 'User');
 
-    // Onboarding phase
     if (!userData) {
-      const updatedData = { name: message }; // extend later
+      const updatedData = { name: message };
       await saveUserMemory(userId, updatedData);
       setUserData(updatedData);
       addToChat(`Nice to meet you, ${message}! I’m your SoulMate AI.`);
     } else {
-      // normal chat logic
       addToChat('Tell me more about how you feel today.');
     }
 
@@ -49,29 +44,4 @@ function App() {
       <h2>SoulMate AI 💬</h2>
       <div style={{ maxHeight: 300, overflowY: 'scroll', marginBottom: 10 }}>
         {chatHistory.map((msg, idx) => (
-          <div key={idx} style={{ textAlign: msg.sender === 'User' ? 'right' : 'left' }}>
-            <strong>{msg.sender}:</strong> {msg.text}
-          </div>
-        ))}
-      </div>
-      <input
-        type="text"
-        placeholder="Say something..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        style={{ width: '80%' }}
-      />
-      <button onClick={handleUserMessage} style={{ marginLeft: 10 }}>Send</button>
-    </div>
-  );
-}
-
-export default App;
-"""
-
-# Save the updated App.js
-app_js_path = "/mnt/data/soulmate_ai_app/App.js"
-with open(app_js_path, "w") as f:
-    f.write(app_js_code)
-
-app_js_path
+          <div key={idx} style={{ t
